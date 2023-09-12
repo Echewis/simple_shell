@@ -12,7 +12,7 @@
 
 void printit(const char *okwu);
 void show_prompt(void);
-void run_command(const char *instruct);
+void run_command(char *instruct);
 void recieve_command(char *st_c, size_t how_big);
 void split_string(char *string, const char *delimiter);
 
