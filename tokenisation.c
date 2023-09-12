@@ -14,7 +14,7 @@ void split_string(char *string, const char *delimiter)
 
 	while (token != NULL)
 	{
-		printf("%s \n", token);
+		printit(token);
 		token = strtok(NULL, delimiter);
 	}
 
