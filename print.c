@@ -1,17 +1,10 @@
 #include "wem_karl.h"
 
 /**
- * printit - print a string on the terminal
- * @okwu: string to be printed
- * Return: Nothing
-*/
+ * printit - is the prototype that prints output
+ * @okwu: this is the address of inputed commands
+ */
 void printit(const char *okwu)
 {
-	int i = 0;
-
-	while (okwu[i] != '\0')
-	{
-		write(1, &okwu[i], 1);
-		i++;
-	}
+	write(STDOUT_FILENO, okwu, strlen(okwu));
 }
