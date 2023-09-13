@@ -6,7 +6,6 @@
  */
 void run_command(char *instruct)
 {
-	char *argz[] = {instruct, NULL};
 	pid_t proccess_id = fork();
 
 	if (proccess_id == -1)
@@ -16,8 +15,8 @@ void run_command(char *instruct)
 	}
 	else if (proccess_id == 0)
 	{
-		execve(instruct, argz, NULL);
-		perror("execve");
+		execlp(instruct, instruct,(char *)NULL);
+		perror("");
 		exit(EXIT_FAILURE);
 	}
 	else
