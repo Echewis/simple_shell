@@ -11,8 +11,8 @@ int main(void)
 	while (true)
 	{
 		show_prompt();
-		run_command(instruct);
 		recieve_command(instruct, sizeof(instruct));
+		run_command(instruct);
 	}
 	return (0);
 }
