@@ -1,14 +1,14 @@
 #include "wem_karl.h"
 /**
  * recieve_command - recieves inputs from the user
- * @st_c: this is the address to the inputed commands
- * @how_big: This is the size of the command
+ * @buffer: buffer that will store command
+ * @buffer_size: This is the size of the buffer
  */
-void recieve_command(char *st_c, size_t how_big)
+void recieve_command(char *buffer, size_t buffer_size)
 {
-	if (fgets(st_c, how_big, stdin) == NULL)
+	if (fgets(buffer, buffer_size, stdin) == NULL) /* reads at most buffer_size -1 en store it in buffer*/
 	{
-		if (feof(stdin))
+		if (feof(stdin)) /* if the end of input has been reached */
 		{
 			printit("\n");
 			exit(EXIT_SUCCESS);
@@ -19,5 +19,5 @@ void recieve_command(char *st_c, size_t how_big)
 			exit(EXIT_SUCCESS);
 		}
 	}
-	st_c[strcspn(st_c, "\n")] = '\0';
+	buffer[strcspn(buffer, "\n")] = '\0'; /* terminate additionnal line */
 }

@@ -13,7 +13,7 @@
 void printit(const char *okwu);
 void show_prompt(void);
 void run_command(char *instruct);
-void recieve_command(char *st_c, size_t how_big);
+void recieve_command(char *buffer, size_t buffer_size);
 void split_string(char *string, const char *delimiter);
 
 #endif
