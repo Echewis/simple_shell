@@ -6,5 +6,5 @@
 */
 void show_prompt(void)
 {
-	printit("Simple_shell/~$: ");
+	printit("#cisfun$ ");
 }
