@@ -6,7 +6,8 @@
  */
 void recieve_command(char *buffer, size_t buffer_size)
 {
-	if (fgets(buffer, buffer_size, stdin) == NULL) /* reads at most buffer_size -1 en store it in buffer*/
+	/* reads at most buffer_size -1 en store it in buffer*/
+	if (fgets(buffer, buffer_size, stdin) == NULL)
 	{
 		if (feof(stdin)) /* if the end of input has been reached */
 		{
