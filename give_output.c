@@ -15,7 +15,8 @@ void run_command(char *instruct)
 	}
 	else if (proccess_id == 0) /* if the child process was created successfully*/
 	{
-		execlp(instruct, instruct,(char *)NULL); /* Execute the command specified by `instruct` */
+		/* Execute the command specified by instruct */
+		execlp(instruct, instruct, (char *)NULL);
 		perror("");
 		exit(EXIT_FAILURE);
 	}
