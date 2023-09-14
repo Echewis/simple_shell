@@ -6,6 +6,7 @@
  */
 void run_command(char *instruct)
 {
+	int status;
 	pid_t proccess_id = fork(); /* create a child process*/
 
 	if (proccess_id == -1) /* if the child process creation failed */
@@ -22,7 +23,7 @@ void run_command(char *instruct)
 	}
 	else /* Tell the parent process to wait for the child process to finish */
 	{
-		wait(NULL);
+		wait(&status);
 	}
 
 }
