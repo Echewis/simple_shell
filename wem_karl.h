@@ -14,6 +14,7 @@ void printit(const char *okwu);
 void show_prompt(void);
 void run_command(char *instruct);
 void recieve_command(char *buffer, size_t buffer_size);
-void split_string(char *string, const char *delimiter);
+char **split_string(char *string);
+void exe_file(char *instruct);
 
 #endif
