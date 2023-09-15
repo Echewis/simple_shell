@@ -3,19 +3,29 @@
 /**
  * split_string - splits a string and print each word
  * @string: string to split
- * @delimiter: delimiter
  * Return: Nothing
 */
-void split_string(char *string, const char *delimiter)
+char **split_string(char *string)
 {
-	char *token;
+	char *token = NULL;
+	char **args;
+	int i = 0;
 
-	token = strtok(string, delimiter);
+	args = malloc(sizeof(char *) * 150);
+	token = strtok(string, " ");
 
 	while (token != NULL)
 	{
-		printit(token);
-		token = strtok(NULL, delimiter);
+		/* printf("%s \n", token); */
+
+		args[i] = malloc(sizeof(token) + 1);
+		strcpy(args[i], token);
+		token = strtok(NULL, " ");
+
+		i++;
 	}
 
+	args[i] = NULL;
+
+	return (args);
 }
