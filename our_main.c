@@ -14,5 +14,6 @@ int main(void)
 		recieve_command(instruct, sizeof(instruct));
 		run_command(instruct);
 	}
+
 	return (0);
 }
