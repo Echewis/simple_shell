@@ -13,7 +13,7 @@ void exe_file(char *instruct)
 
 	if (args)
 	{
-		path = "/bin/";
+		path = get_path(args[0]);
 		if (execve(path, args, NULL) == -1)
 		{
 			perror("Error");
