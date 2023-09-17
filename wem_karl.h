@@ -16,5 +16,7 @@ void run_command(char *instruct);
 void recieve_command(char *buffer, size_t buffer_size);
 char **split_string(char *string);
 void exe_file(char *instruct);
+char* get_path(char* command);
+char *_strdup(char *str);
 
 #endif
