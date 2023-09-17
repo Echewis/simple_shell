@@ -19,7 +19,7 @@ char **split_string(char *string)
 		/* printf("%s \n", token); */
 
 		args[i] = malloc(sizeof(token) + 1);
-		strcpy(args[i], token);
+		our_strcpy(args[i], token);
 		token = strtok(NULL, " ");
 
 		i++;
