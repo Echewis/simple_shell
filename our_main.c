@@ -13,6 +13,7 @@ int main(void)
 		show_prompt();
 		recieve_command(instruct, sizeof(instruct));
 		run_command(instruct);
+		exit_shell();
 	}
 
 	return (0);
