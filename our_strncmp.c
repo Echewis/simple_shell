@@ -1,7 +1,7 @@
 #include "wem_karl.h"
 
 /**
- * our_strncmp - unction to compare the first n characters of str1 and str2
+ * our_strncmp - compare the first n characters of str1 and str2
  * @str1: first string
  * @str2: second string
  * @n: number of byte
