@@ -1,7 +1,7 @@
 #include "wem_karl.h"
 
 /**
- * _strlen - len of a string
+ * our_strlen - len of a string
  * @s: parameter
  *
  * Return: the len of *s
