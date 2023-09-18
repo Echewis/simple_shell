@@ -18,12 +18,3 @@ void exit_shell(void)
 		}
 	}
 }
-/*
-
-void exit_s(const char *s)
-{
-	if (strcmp(s, "exit") == 0)
-	{
-		exit(0);
-	}
-}*/
