@@ -10,6 +10,7 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 
+
 extern char **environ;
 void printit(const char *okwu);
 void show_prompt(void);
@@ -23,5 +24,6 @@ char *our_strdup(char *str);
 void *our_strcpy(char *dest, const char *src);
 int our_strncmp(char *str1, char *str2, size_t n); 
 int our_strlen(char *s);
+void exit_shell();
 
 #endif
