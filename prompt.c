@@ -5,5 +5,5 @@
 */
 void show_prompt(void)
 {
-	printit("#Wem_&_Karl_shell$ ");
+	printit("Wem_&_Karl_shell$ ");
 }
