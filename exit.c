@@ -3,18 +3,14 @@
 /**
  * exit_shell - This is exit function that terminates the programm
  */
-void exit_shell(void)
+void exit_shell(char *inst)
 {
-	char inst[150];
-	while (1)
-	{
-	fgets(inst, sizeof(inst), stdin);
+
 	inst[strcspn(inst, "\n")] == '\0';
 
 		if (strcmp(inst, "exit") == 0)
 		{
-			printit("Exiting...");
+			printit("Exiting...\n");
 			exit(EXIT_SUCCESS);
-		}
-	}
+		}	
 }
