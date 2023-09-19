@@ -10,6 +10,7 @@ void exit_shell(char *inst)
 /*	inst[strcspn(inst, "\n")] == '\0';*/
 
 		int status;
+
 		if (strncmp(inst, "exit", 4) == 0)
 		{
 			status = atoi(inst + 5);
