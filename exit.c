@@ -6,7 +6,7 @@
 void exit_shell(char *inst)
 {
 
-	inst[strcspn(inst, "\n")] == '\0';
+/*	inst[strcspn(inst, "\n")] == '\0';*/
 
 		if (strcmp(inst, "exit") == 0)
 		{
