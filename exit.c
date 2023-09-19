@@ -12,5 +12,5 @@ void exit_shell(char *inst)
 		{
 			printit("Exiting...\n");
 			exit(EXIT_SUCCESS);
-		}	
+		}
 }
