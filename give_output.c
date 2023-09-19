@@ -20,7 +20,7 @@ void run_command(char *instruct)
 		exe_file(instruct);
 		/* execlp(instruct, instruct, (char *)NULL);*/
 		perror("");
-		exit(EXIT_FAILURE);
+		exit(EXIT_SUCCESS);
 	}
 	else /* Tell the parent process to wait for the child process to finish */
 	{
