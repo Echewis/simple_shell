@@ -6,11 +6,11 @@
  */
 void recieve_command(char *buffer, size_t buffer_size)
 {
-//	ssize_t read;
-//	size_t lenght = 0;
+/*	ssize_t read;
+	size_t lenght = 0;*/
 	/* reads at most buffer_size -1 and store it in buffer*/
 	while (fgets(buffer, buffer_size, stdin) == NULL)
-//	while ((read = getline(&buffer, &lenght, stdin)) != -1)
+/*	while ((read = getline(&buffer, &lenght, stdin)) != -1)*/
 	{
 		
 		if (feof(stdin)) /* if the end of input has been reached */
