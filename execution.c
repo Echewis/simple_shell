@@ -20,7 +20,7 @@ void exe_file(char *instruct)
 
 		if (execve(path, args, NULL) == -1)
 		{
-			perror("Error");
+			perror("./hsh");
 			exit(EXIT_FAILURE);
 		}
 	}
