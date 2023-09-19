@@ -24,6 +24,8 @@ char *our_strdup(char *str);
 void *our_strcpy(char *dest, const char *src);
 int our_strncmp(char *str1, char *str2, size_t n); 
 int our_strlen(char *s);
-void exit_shell();
+void exit_shell(char *inst);
+void env(const char *instruct);/* I'm working on this environment as well */
+
 
 #endif
