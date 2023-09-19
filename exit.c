@@ -2,6 +2,7 @@
 
 /**
  * exit_shell - This is exit function that terminates the programm
+ * @inst: This is the pointer that stores the command exit
  */
 void exit_shell(char *inst)
 {
