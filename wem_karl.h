@@ -21,7 +21,7 @@ void exe_file(char *instruct);
 char *get_path(char *command);
 char *our_getenv(char *env_name);
 char *our_strdup(char *str);
-void *our_strcpy(char *dest, const char *src);
+char *our_strcpy(char *dest, const char *src);
 int our_strncmp(char *str1, char *str2, size_t n); 
 int our_strlen(char *s);
 void exit_shell(char *inst);
