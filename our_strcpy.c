@@ -7,7 +7,7 @@
  *
  * Return: Nothing
  */
-void *our_strcpy(char *dest, const char *src)
+char *our_strcpy(char *dest, const char *src)
 {
 	char *original = dest;
 
@@ -19,4 +19,6 @@ void *our_strcpy(char *dest, const char *src)
 	}
 
 	*dest = '\0';
+
+	return (original);
 }
