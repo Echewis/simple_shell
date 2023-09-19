@@ -7,10 +7,12 @@
 */
 char *our_getenv(char *env_name)
 {
+	char **env;
+
 	if (env_name == NULL)
 		return (NULL);
 
-	for (char **env = environ; *env != NULL; env++)
+	for (env = environ; *env != NULL; env++)
 	{
 		char *entry = *env;
 
