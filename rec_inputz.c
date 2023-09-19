@@ -6,9 +6,13 @@
  */
 void recieve_command(char *buffer, size_t buffer_size)
 {
-	/* reads at most buffer_size -1 en store it in buffer*/
-	if (fgets(buffer, buffer_size, stdin) == NULL)
+//	ssize_t read;
+//	size_t lenght = 0;
+	/* reads at most buffer_size -1 and store it in buffer*/
+	while (fgets(buffer, buffer_size, stdin) == NULL)
+//	while ((read = getline(&buffer, &lenght, stdin)) != -1)
 	{
+		
 		if (feof(stdin)) /* if the end of input has been reached */
 		{
 			printit("\n");
@@ -16,7 +20,7 @@ void recieve_command(char *buffer, size_t buffer_size)
 		}
 		else
 		{
-			printit("Error, Try Again");
+			printit("Error, Try Again\n");
 			exit(EXIT_SUCCESS);
 		}
 	}
