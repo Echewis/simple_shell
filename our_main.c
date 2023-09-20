@@ -14,8 +14,7 @@ int main(void)
 		recieve_command(instruct, sizeof(instruct));
 		exit_shell(instruct);
 		env(instruct);
-		execute_c(instruct);
-	/*	run_command(instruct);*/
+		run_command(instruct);
 	}
 	return (0);
 }
