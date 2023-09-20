@@ -6,23 +6,23 @@
  */
 void recieve_command(char *buffer, size_t buffer_size)
 {
-/*	ssize_t read;*/
-/*	size_t lenght = 0;*/
+	/*	ssize_t read;*/
+	/*	size_t lenght = 0;*/
 	/* reads at most buffer_size -1 and store it in buffer*/
-	while (fgets(buffer, buffer_size, stdin) == NULL)
-/*	while ((read = getline(&buffer, &lenght, stdin)) != -1)*/
-	{
+	size_t len;
 
-		if (feof(stdin)) /* if the end of input has been reached */
+	if (getline(&buffer, &buffer_size, stdin) != -1)
+	/*	while ((read = getline(&buffer, &lenght, stdin)) != -1)*/
+	{
+		len = strlen(buffer);
+		if (len > 0 && buffer[len - 1] == '\n')
 		{
-			printit("\n");
-			exit(EXIT_SUCCESS);
-		}
-		else
-		{
-			printit("Error, Try Again\n");
-			exit(EXIT_SUCCESS);
+			buffer[len - 1] = '\0';
 		}
 	}
-	buffer[strcspn(buffer, "\n")] = '\0'; /* terminate additionnal line */
+	else
+	{
+		printit("Error, Try Again\n");
+		exit(EXIT_FAILURE);
+	}
 }
