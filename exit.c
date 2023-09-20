@@ -9,9 +9,13 @@ void exit_shell(char *inst)
 
 /*	inst[strcspn(inst, "\n")] == '\0';*/
 
+/*		int status;*/
+
+/*		if (strncmp(inst, "exit", 4) == 0)*/
 		if (strcmp(inst, "exit") == 0)
 		{
-			printit("Exiting...\n");
+		/*	status = atoi(inst + 5);*/
+		/*	printf("%d\n", status);*/
 			exit(EXIT_SUCCESS);
 		}
 }
