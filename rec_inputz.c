@@ -1,25 +1,27 @@
 #include "wem_karl.h"
-
 /**
- * recieve_command - will receive command form the usser
- * @buffer: Is the character pointer
- * @buffer_size: is the size of the string
+ * recieve_command - recieves inputs from the user
+ * @buffer: buffer that will store command
+ * @buffer_size: This is the size of the buffer
  */
 void recieve_command(char *buffer, size_t buffer_size)
 {
-	if (fgets(buffer, buffer_size, stdin) == NULL)
-	{
+	ssize_t read;
+	size_t len = 0;
 
-		if (feof(stdin))
+		if ((read = getline(&buffer, &buffer_size, stdin)) != -1)
+	{
+		len = strlen(buffer);
+		if (len > 0 && buffer[len - 1] == '\n')
 		{
-			printit("\n");
-			exit(EXIT_SUCCESS);
-		}
-		else
-		{
-			printit("Error...\n");
-			exit(EXIT_FAILURE);
+			buffer[len - 1] = '\0';
 		}
 	}
-/*	buffer[strcspn(buffer, "\n")] == '\0';*/
+	
+	else
+	{
+		printit("Error, Try Again\n");
+		exit(EXIT_FAILURE);
+	}
+	
 }
