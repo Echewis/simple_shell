@@ -6,7 +6,7 @@
  */
 int main(void)
 {
-	char instruct[125];
+	char instruct[1024];
 
 	while (true)
 	{
@@ -14,7 +14,8 @@ int main(void)
 		recieve_command(instruct, sizeof(instruct));
 		exit_shell(instruct);
 		env(instruct);
-		run_command(instruct);
+		execute_c(instruct);
+	/*	run_command(instruct);*/
 	}
 	return (0);
 }

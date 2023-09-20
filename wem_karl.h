@@ -10,7 +10,7 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 
-
+void execute_c(char *inst);
 extern char **environ;
 void printit(const char *okwu);
 void show_prompt(void);
