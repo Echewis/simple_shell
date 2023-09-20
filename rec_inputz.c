@@ -6,23 +6,22 @@
  */
 void recieve_command(char *buffer, size_t buffer_size)
 {
-	ssize_t read;
+	/*ssize_t read;*/
 	size_t len = 0;
 
-	if ((read = getline(&buffer, &buffer_size, stdin)) == -1)
+	if (getline(&buffer, &buffer_size, stdin) == -1)
 	{
 		printit("Error.... Try again\n");
 		exit(EXIT_FAILURE);
 	}
-		else
+	else
+	{
+		len = strlen(buffer);
+
+		if (len > 0 && buffer[len - 1] == '\n')
 		{
-			len = strlen(buffer);
-
-			if (len > 0 && buffer[len - 1] == '\n')
-			{
-				buffer[len - 1] = '\0';
-			}
+			buffer[len - 1] = '\0';
 		}
-
+	}
 
 }
