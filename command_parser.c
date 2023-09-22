@@ -1,8 +1,8 @@
 #include "wem_karl.h"
 
 /**
- * is_cmd - determines if a file is an executable command
- * @info: the info struct
+ * isCommandInPath - determines if a command is in the path
+ * @info: information about the shell's state
  * @path: path to the file
  *
  * Return: 1 if true, 0 otherwise
@@ -23,8 +23,8 @@ int isCommandInPath(info_t *info, char *path)
 }
 
 /**
- * dup_chars - duplicates characters
- * @pathstr: the PATH string
+ * copySubstring - copy a part of a string
+ * @pathstr: the path string
  * @start: starting index
  * @stop: stopping index
  *
@@ -32,23 +32,23 @@ int isCommandInPath(info_t *info, char *path)
  */
 char *copySubstring(char *pathstr, int start, int stop)
 {
-	static char buf[1024];
+	static char buffer[1024];
 	int i = 0, k = 0;
 
 	for (k = 0, i = start; i < stop; i++)
 		if (pathstr[i] != ':')
-			buf[k++] = pathstr[i];
-	buf[k] = 0;
-	return (buf);
+			buffer[k++] = pathstr[i];
+	buffer[k] = 0;
+	return (buffer);
 }
 
 /**
- * find_path - finds this cmd in the PATH string
- * @info: the info struct
+ * findExecutablePath - find if the command is in the pathstr
+ * @info: information about the shell's state
  * @pathstr: the PATH string
  * @cmd: the cmd to find
  *
- * Return: full path of cmd if found or NULL
+ * Return: full path of command if found or NULL otherwise
  */
 char *findExecutablePath(info_t *info, char *pathstr, char *cmd)
 {
