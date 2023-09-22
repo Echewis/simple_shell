@@ -1,10 +1,9 @@
 #include "wem_karl.h"
 
 /**
- * interactive - returns true if shell is interactive mode
- * @info: struct address
- *
- * Return: if interactive mode 1, 0 otherwise
+ * isInteractive - This will returns true if shell is interactive mode
+ * @info: This is the structure address
+ * Return: will return if interactive mode 1, 0
  */
 int isInteractive(info_t *info)
 {
@@ -12,63 +11,63 @@ int isInteractive(info_t *info)
 }
 
 /**
- * is_delim - checks if character is a delimeter
- * @c: the char to check
- * @delim: the delimeter string
- * Return: 1 if true, 0 if false
+ * isDelimiter - This will checks if character is a delimeter
+ * @ch: This is the character that will be checked
+ * @dm: IT's the delimeter string
+ * Return:It will return 1 if true and 0 if false
  */
-int isDelimiter(char c, char *delim)
+int isDelimiter(char ch, char *dm)
 {
-	while (*delim)
-		if (*delim++ == c)
+	while (*dm)
+		if (*dm++ == ch)
 			return (1);
 	return (0);
 }
 
 /**
- * _isalpha - checks for alphabetic character
- * @c: The character to input
- * Return: 1 if c is alphabetic, 0 otherwise
+ * isAlpha - This will check for alphabetic character
+ * @ch: This is the character to input
+ * Return: It will return 1 if c is alphabetic or 0 if otherwise
  */
 
-int isAlpha(int c)
+int isAlpha(int ch)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+	if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
 		return (1);
 	else
 		return (0);
 }
 
 /**
- * _atoi - converts a string to an integer
- * @s: the string to be converted
- * Return: 0 if no numbers in string, converted number otherwise
+ * StringToInteger - This will convert a string to an integer
+ * @st:This is the string to be converted
+ * Return: It will return 0 if no numbers in string and converted number
  */
 
-int StringToInteger(char *s)
+int StringToInteger(char *st)
 {
-	int i, sign = 1, flag = 0, output;
+	int a, sn = 1, fg = 0, outp;
 	unsigned int result = 0;
 
-	for (i = 0; s[i] != '\0' && flag != 2; i++)
+	for (a = 0; st[a] != '\0' && fg != 2; a++)
 	{
-		if (s[i] == '-')
-			sign *= -1;
+		if (st[a] == '-')
+			sn *= -1;
 
-		if (s[i] >= '0' && s[i] <= '9')
+		if (st[a] >= '0' && st[a] <= '9')
 		{
-			flag = 1;
+			fg = 1;
 			result *= 10;
-			result += (s[i] - '0');
+			result += (st[a] - '0');
 		}
-		else if (flag == 1)
-			flag = 2;
+		else if (fg == 1)
+			fg = 2;
 	}
 
-	if (sign == -1)
-		output = -result;
+	if (sn == -1)
+		outp = -result;
 	else
-		output = result;
+		outp = result;
 
-	return (output);
+	return (outp);
 }
