@@ -1,16 +1,17 @@
 #include "wem_karl.h"
 
 /**
- **_strncpy - copies a string
- *@dest: the destination string to be copied to
- *@src: the source string
- *@n: the amount of characters to be copied
- *Return: the concatenated string
+ * copyNChar - copies n character in a string
+ * @dest: the destination string
+ * @src: the source string
+ * @n: the amount of characters to be copied
+ *
+ * Return: the concatenated string
  */
 char *copyNChar(char *dest, char *src, int n)
 {
 	int i, j;
-	char *s = dest;
+	char *str = dest;
 
 	i = 0;
 	while (src[i] != '\0' && i < n - 1)
@@ -27,15 +28,16 @@ char *copyNChar(char *dest, char *src, int n)
 			j++;
 		}
 	}
-	return (s);
+	return (str);
 }
 
 /**
- **_strncat - concatenates two strings
- *@dest: the first string
- *@src: the second string
- *@n: the amount of bytes to be maximally used
- *Return: the concatenated string
+ * concatNChar - concatenates two strings
+ * @dest: the destination string
+ * @src: the source string
+ * @n: the amount of bytes to be maximally used
+ *
+ * Return: the concatenated string
  */
 char *concatNChar(char *dest, char *src, int n)
 {
@@ -58,10 +60,11 @@ char *concatNChar(char *dest, char *src, int n)
 }
 
 /**
- **_strchr - locates a character in a string
- *@s: the string to be parsed
- *@c: the character to look for
- *Return: (s) a pointer to the memory area s
+ * findChar - find a character in a string
+ * @s: the string where we find character
+ * @c: the character to be find
+ *
+ * Return: a pointer to the string
  */
 char *findChar(char *s, char c)
 {
