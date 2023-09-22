@@ -1,77 +1,79 @@
 #include "wem_karl.h"
 
 /**
- * is_chain - test if current char in buffer is a chain delimeter
- * @info: the parameter struct
- * @buf: the char buffer
- * @p: address of current position in buf
+ * isChain - test if the buffer is a chain delimeter
+ * @info: information about the shell's state
+ * @buffer: the string buffer
+ * @pos: address of current position in buf
  *
- * Return: 1 if chain delimeter, 0 otherwise
+ * Return: 1 if true, 0 otherwises
  */
-int isChain(info_t *info, char *buf, size_t *p)
+int isChain(info_t *info, char *buffer, size_t *pos)
 {
-	size_t j = *p;
+	size_t j = *pos;
 
-	if (buf[j] == '|' && buf[j + 1] == '|')
+	if (buffer[j] == '|' && buffer[j + 1] == '|')
 	{
-		buf[j] = 0;
+		buffer[j] = 0;
 		j++;
 		info->cmd_buf_type = CMD_OR;
 	}
-	else if (buf[j] == '&' && buf[j + 1] == '&')
+	else if (buffer[j] == '&' && buffer[j + 1] == '&')
 	{
-		buf[j] = 0;
+		buffer[j] = 0;
 		j++;
 		info->cmd_buf_type = CMD_AND;
 	}
-	else if (buf[j] == ';') /* found end of this command */
+	else if (buffer[j] == ';') /* the end of the command */
 	{
-		buf[j] = 0; /* replace semicolon with null */
+		buffer[j] = 0;
 		info->cmd_buf_type = CMD_CHAIN;
 	}
 	else
 		return (0);
-	*p = j;
+	*pos = j;
+
 	return (1);
 }
 
 /**
- * check_chain - checks we should continue chaining based on last status
- * @info: the parameter struct
- * @buf: the char buffer
- * @p: address of current position in buf
- * @i: starting position in buf
+ * checkChain - checks for a chains
+ * @info: information about the shell's state
+ * @buffer: the char buffer
+ * @pos: address of current position in buf
+ * @start: starting position in buf
  * @len: length of buf
  *
  * Return: Void
  */
-void checkChain(info_t *info, char *buf, size_t *p, size_t b, size_t maxl)
+void checkChain(info_t *info, char *buffer, size_t *pos
+		, size_t start, size_t len)
 {
-	size_t a = *p;
+	size_t a = *pos;
 
 	if (info->cmd_buf_type == CMD_AND)
 	{
 		if (info->status)
 		{
-			buf[b] = 0;
-			a = maxl;
+			buffer[start] = 0;
+			a = len;
 		}
 	}
 	if (info->cmd_buf_type == CMD_OR)
 	{
 		if (!info->status)
 		{
-			buf[b] = 0;
-			a = maxl;
+			buffer[start] = 0;
+			a = len;
 		}
 	}
 
-	*p = a;
+	*pos = a;
 }
 
 /**
- * replace_alias - replaces an aliases in the tokenized string
- * @info: the parameter struct
+ * replaceAliases - replaces an aliases in the tokenized string
+ * @info: information about the shell's state
  *
  * Return: 1 if replaced, 0 otherwise
  */
@@ -99,8 +101,8 @@ int replaceAliases(info_t *info)
 }
 
 /**
- * replace_vars - replaces vars in the tokenized string
- * @info: the parameter struct
+ * replaceVariables - replaces variables in the tokenized string
+ * @info: information about the shell's state
  *
  * Return: 1 if replaced, 0 otherwise
  */
@@ -140,7 +142,7 @@ int replaceVariables(info_t *info)
 }
 
 /**
- * replace_string - replaces string
+ * replaceStringInArray - replaces string in an array of string
  * @old: address of old string
  * @new: new string
  *
