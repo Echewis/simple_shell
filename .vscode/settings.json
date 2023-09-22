@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "shell_loop.C": "cpp"
+    },
+    "C_Cpp.default.includePath": [
+        "/usr/include",
+        "/usr/local/include"
+    ],
+    "C_Cpp.errorSquiggles": "disabled"
+}

@@ -1,20 +1,44 @@
 #include "wem_karl.h"
 
 /**
- * main - is the main fuction
- * Return: will return positve
+ * main - entry point
+ * @ac: arg count
+ * @av: arg vector
+ *
+ * Return: 0 on success, 1 on error
  */
-int main(void)
+int main(int ac, char **av)
 {
-	char instruct[1024];
+	info_t info[] = { INFO_INIT };
+	int fd = 2;
 
-	while (true)
+	asm ("mov %1, %0\n\t"
+			"add $3, %0"
+			: "=r" (fd)
+			: "r" (fd));
+
+	if (ac == 2)
 	{
-		show_prompt();
-		recieve_command(instruct, sizeof(instruct));
-		exit_shell(instruct);
-		env(instruct);
-		run_command(instruct);
+		fd = open(av[1], O_RDONLY);
+		if (fd == -1)
+		{
+			if (errno == EACCES)
+				exit(126);
+			if (errno == ENOENT)
+			{
+				printInputString(av[0]);
+				printInputString(": 0: Can't open ");
+				printInputString(av[1]);
+				printChar('\n');
+				printChar(BUF_FLUSH);
+				exit(127);
+			}
+			return (EXIT_FAILURE);
+		}
+		info->readfd = fd;
 	}
-	return (0);
+	populateEnvironmentList(info);
+	readHistoryFromFile(info);
+	runShell(info, av);
+	return (EXIT_SUCCESS);
 }
