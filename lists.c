@@ -1,7 +1,7 @@
 #include "wem_karl.h"
 
 /**
- * add_node - adds a node to the start of the list
+ * *insertNode - This will add a node to the start of the list
  * @head: address of pointer to head node
  * @str: str field of node
  * @num: node index used by history
@@ -34,11 +34,10 @@ list_t *insertNode(list_t **head, const char *str, int num)
 }
 
 /**
- * add_node_end - adds a node to the end of the list
- * @head: address of pointer to head node
- * @str: str field of node
- * @num: node index used by history
- *
+ * *insertNodeAtEnd - This will add  node to the end
+ * @head: This is address of pointer to head node
+ * @str: field of node
+ * @num: It is then index of node that is used by history
  * Return: size of list
  */
 list_t *insertNodeAtEnd(list_t **head, const char *str, int num)
@@ -75,41 +74,40 @@ list_t *insertNodeAtEnd(list_t **head, const char *str, int num)
 }
 
 /**
- * print_list_str - prints only the str element of a list_t linked list
- * @h: pointer to first node
- *
+ * printStringList - This will prints only the str element of linked list
+ * @hd: This is a pointer to first node
  * Return: size of list
  */
-size_t printStringList(const list_t *h)
+size_t printStringList(const list_t *hd)
 {
-	size_t i = 0;
+	size_t a = 0;
 
-	while (h)
+	while (hd)
 	{
-		putStr(h->str ? h->str : "(nil)");
+		putStr(hd->str ? hd->str : "(nil)");
 		putStr("\n");
-		h = h->next;
-		i++;
+		hd = hd->next;
+		a++;
 	}
-	return (i);
+	return (a);
 }
 
 /**
- * delete_node_at_index - deletes node at given index
- * @head: address of pointer to first node
- * @index: index of node to delete
+ * deleteNodeAtIndex - This will deletes node at given index
+ * @head: This is the address of pointer to first node
+ * @in: This is an index of node to delete
  *
  * Return: 1 on success, 0 on failure
  */
-int deleteNodeAtIndex(list_t **head, unsigned int index)
+int deleteNodeAtIndex(list_t **head, unsigned int in)
 {
 	list_t *node, *prev_node;
-	unsigned int i = 0;
+	unsigned int a = 0;
 
 	if (!head || !*head)
 		return (0);
 
-	if (!index)
+	if (!in)
 	{
 		node = *head;
 		*head = (*head)->next;
@@ -120,14 +118,14 @@ int deleteNodeAtIndex(list_t **head, unsigned int index)
 	node = *head;
 	while (node)
 	{
-		if (i == index)
+		if (a == in)
 		{
 			prev_node->next = node->next;
 			free(node->str);
 			free(node);
 			return (1);
 		}
-		i++;
+		a++;
 		prev_node = node;
 		node = node->next;
 	}
@@ -135,10 +133,8 @@ int deleteNodeAtIndex(list_t **head, unsigned int index)
 }
 
 /**
- * free_list - frees all nodes of a list
- * @head_ptr: address of pointer to head node
- *
- * Return: void
+ * freeLinkedList - This will free all nodes of a list
+ * @head_ptr: This is the address of pointer to head node
  */
 void freeLinkedList(list_t **head_ptr)
 {
