@@ -1,7 +1,7 @@
 #include "wem_karl.h"
 
 /**
- * _eputs - prints an input string
+ * printInputString - prints an input string
  * @str: the string to be printed
  *
  * Return: Nothing
@@ -12,6 +12,7 @@ void printInputString(char *str)
 
 	if (!str)
 		return;
+
 	while (str[i] != '\0')
 	{
 		printChar(str[i]);
@@ -20,11 +21,10 @@ void printInputString(char *str)
 }
 
 /**
- * _eputchar - writes the character c to stderr
- * @c: The character to print
+ * printChar - writes the character c to stderr
+ * @c: The character to be printed
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: On success 1
  */
 int printChar(char c)
 {
@@ -38,16 +38,16 @@ int printChar(char c)
 	}
 	if (c != BUF_FLUSH)
 		buf[i++] = c;
+
 	return (1);
 }
 
 /**
- * _putfd - writes the character c to given fd
- * @c: The character to print
+ * writeCharToFile - writes the character c to given fd
+ * @c: The character to be printed
  * @fd: The filedescriptor to write to
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: On success 1
  */
 int writeCharToFile(char c, int fd)
 {
@@ -65,7 +65,7 @@ int writeCharToFile(char c, int fd)
 }
 
 /**
- * _putsfd - prints an input string
+ * writeStringToFile - write string into a files
  * @str: the string to be printed
  * @fd: the filedescriptor to write to
  *
