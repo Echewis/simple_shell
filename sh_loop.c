@@ -1,11 +1,11 @@
 #include "wem_karl.h"
 
 /**
- * hsh - main shell loop
- * @info: the parameter & return info struct
- * @av: the argument vector from main()
+ * runShell - main shell loop
+ * @info: information about the shell's state
+ * @av: argument vector
  *
- * Return: 0 on success, 1 on error, or error code
+ * Return: 0 on success
  */
 int runShell(info_t *info, char **av)
 {
@@ -44,13 +44,10 @@ int runShell(info_t *info, char **av)
 }
 
 /**
- * find_builtin - finds a builtin command
- * @info: the parameter & return info struct
+ * findBuiltInCommand - finds a builtin command
+ * @info: information about the shell's state
  *
- * Return: -1 if builtin not found,
- * 	0 if builtin executed successfully,
- * 	1 if builtin found but not successful,
- * 	2 if builtin signals exit()
+ * Return: 0 for success
  */
 int findBuiltInCommand(info_t *info)
 {
@@ -78,14 +75,14 @@ int findBuiltInCommand(info_t *info)
 }
 
 /**
- * find_cmd - finds a command in PATH
- * @info: the parameter & return info struct
+ * findExecutable - finds a command in PATH
+ * @info: information about the shell's state
  *
- * Return: void
+ * Return: Nothing
  */
 void findExecutable(info_t *info)
 {
-	char *path = NULL;
+	char *envar, *path = NULL;
 	int i, j;
 
 	info->path = info->argv[0];
@@ -100,7 +97,8 @@ void findExecutable(info_t *info)
 	if (!j)
 		return;
 
-	path = findExecutablePath(info, getEnvironVariable(info, "PATH="), info->argv[0]);
+	envar = getEnvironVariable(info, "PATH=");
+	path = findExecutablePath(info, envar, info->argv[0]);
 	if (path)
 	{
 		info->path = path;
@@ -120,10 +118,10 @@ void findExecutable(info_t *info)
 }
 
 /**
- * fork_cmd - forks a an exec thread to run cmd
- * @info: the parameter & return info struct
+ * executeCommand - run a command
+ * @info: information about the shell's state
  *
- * Return: void
+ * Return: Nothings
  */
 void executeCommand(info_t *info)
 {
