@@ -1,9 +1,8 @@
 #include "wem_karl.h"
 
 /**
- * _strlen - returns the length of a string
+ * getStrLen - This will returns length of a string
  * @s: the string whose length to check
- *
  * Return: integer length of string
  */
 int getStrLen(char *s)
@@ -19,11 +18,10 @@ int getStrLen(char *s)
 }
 
 /**
- * _strcmp - performs lexicogarphic comparison of two strangs.
- * @s1: the first strang
- * @s2: the second strang
- *
- * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
+ * compareStr - This will performs lexicogarphic comparison of two strangs.
+ * @s1: This is the first String
+ * @s2: Also the second one
+ * Return: It will return negative if s1 < s2
  */
 int compareStr(char *s1, char *s2)
 {
@@ -41,35 +39,35 @@ int compareStr(char *s1, char *s2)
 }
 
 /**
- * starts_with - checks if needle starts with haystack
- * @haystack: string to search
- * @needle: the substring to find
+ * *starts_with - checks if needle starts with haystack
+ * @h: string to search
+ * @n: the substring to find
  *
  * Return: address of next char of haystack or NULL
  */
-char *starts_with(const char *haystack, const char *needle)
+char *starts_with(const char *h, const char *n)
 {
-	while (*needle)
-		if (*needle++ != *haystack++)
+	while (*n)
+		if (*n++ != *h++)
 			return (NULL);
-	return ((char *)haystack);
+	return ((char *)h);
 }
 
 /**
- * _strcat - concatenates two strings
- * @dest: the destination buffer
- * @src: the source buffer
+ * *concatStr - This will concatenates two strings
+ * @d: is the destination pointer
+ * @s: this is the source pointer
  *
- * Return: pointer to destination buffer
+ * Return: will return the pointer to destination pointer
  */
-char *concatStr(char *dest, char *src)
+char *concatStr(char *d, char *s)
 {
-	char *ret = dest;
+	char *r = d;
 
-	while (*dest)
-		dest++;
-	while (*src)
-		*dest++ = *src++;
-	*dest = *src;
-	return (ret);
+	while (*d)
+		d++;
+	while (*s)
+		*d++ = *s++;
+	*d = *s;
+	return (r);
 }

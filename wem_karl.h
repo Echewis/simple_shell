@@ -225,7 +225,7 @@ ssize_t getNodeIndex(list_t *head, list_t *nodeToFind);
 
 /* vars.c */
 int isChain(info_t *info, char *str, size_t *position);
-void checkChain(info_t *info, char *str, size_t *start, size_t length, size_t maxLength);
+void checkChain(info_t *info, char *buf, size_t *p, size_t b, size_t maxl);
 int replaceAliases(info_t *info);
 int replaceVariables(info_t *info);
 int replaceStringInArray(char **array, char *replacement);

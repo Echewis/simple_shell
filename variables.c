@@ -45,28 +45,28 @@ int isChain(info_t *info, char *buf, size_t *p)
  *
  * Return: Void
  */
-void checkChain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
+void checkChain(info_t *info, char *buf, size_t *p, size_t b, size_t maxl)
 {
-	size_t j = *p;
+	size_t a = *p;
 
 	if (info->cmd_buf_type == CMD_AND)
 	{
 		if (info->status)
 		{
-			buf[i] = 0;
-			j = len;
+			buf[b] = 0;
+			a = maxl;
 		}
 	}
 	if (info->cmd_buf_type == CMD_OR)
 	{
 		if (!info->status)
 		{
-			buf[i] = 0;
-			j = len;
+			buf[b] = 0;
+			a = maxl;
 		}
 	}
 
-	*p = j;
+	*p = a;
 }
 
 /**

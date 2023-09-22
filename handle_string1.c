@@ -1,86 +1,82 @@
 #include "wem_karl.h"
 /**
- * _strcpy - copies a string
- * @dest: the destination
- * @src: the source
- *
- * Return: pointer to destination
+ * *copyStr - This will copies a string
+ * @d: This is the destination
+ * @s: this is the source
+ * Return:This will return a pointer to the destination
  */
-char *copyStr(char *dest, char *src)
+char *copyStr(char *d, char *s)
 {
-	int i = 0;
+	int a = 0;
 
-	if (dest == src || src == 0)
-		return (dest);
-	while (src[i])
+	if (d == s || s == 0)
+		return (d);
+	while (s[a])
 	{
-		dest[i] = src[i];
-		i++;
+		d[a] = s[a];
+		a++;
 	}
-	dest[i] = 0;
-	return (dest);
+	d[a] = 0;
+	return (d);
 }
 
 /**
- * _strdup - duplicates a string
- * @str: the string to duplicate
- *
- * Return: pointer to the duplicated string
+ * *duplicateStr - This will duplicates  string
+ * @s: this is the string to be duplicated
+ * Return: This will return pointer to the duplicated string
  */
-char *duplicateStr(const char *str)
+char *duplicateStr(const char *s)
 {
 	int length = 0;
-	char *ret;
+	char *r;
 
-	if (str == NULL)
+	if (s == NULL)
 		return (NULL);
-	while (*str++)
+	while (*s++)
 		length++;
-	ret = malloc(sizeof(char) * (length + 1));
-	if (!ret)
+	r = malloc(sizeof(char) * (length + 1));
+	if (!r)
 		return (NULL);
 	for (length++; length--;)
-		ret[length] = *--str;
-	return (ret);
+		r[length] = *--s;
+	return (r);
 }
 
 /**
- * _puts - prints an input string
- * @str: the string to be printed
- *
- * Return: Nothing
+ * putStr - This will prints an input string
+ * @s: this is the string to be printed
+ * Return:It will return Nothing
  */
-void putStr(char *str)
+void putStr(char *s)
 {
-	int i = 0;
+	int a = 0;
 
-	if (!str)
+	if (!s)
 		return;
-	while (str[i] != '\0')
+	while (s[a] != '\0')
 	{
-		putChar(str[i]);
-		i++;
+		putChar(s[a]);
+		a++;
 	}
 }
 
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
+ * putChar -This will  writes the character ch to stdout_fileno
+ * @ch: The character to print
+ * Return: It will return success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int putChar(char c)
+int putChar(char ch)
 {
-	static int i;
+	static int a;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (ch == BUF_FLUSH || a >= WRITE_BUF_SIZE)
 	{
-		write(1, buf, i);
-		i = 0;
+		write(1, buf, a);
+		a = 0;
 	}
-	if (c != BUF_FLUSH)
-		buf[i++] = c;
+	if (ch != BUF_FLUSH)
+		buf[a++] = ch;
 	return (1);
 }
