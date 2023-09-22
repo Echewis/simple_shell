@@ -1,41 +1,44 @@
 #include "wem_karl.h"
 
 /**
- * _erratoi - converts a string to an integer
- * @s: the string to be converted
- * Return: 0 if no numbers in string, converted number otherwise
- *       -1 on error
+ * ErrorStringToInteger - converts a string to an integer
+ * @str: the string to be converted
+ *
+ * Return: 0 if no numbers in string, cnumber otherwise
+ * -1 if error
  */
-int ErrorStringToInteger(char *s)
+int ErrorStringToInteger(char *str)
 {
 	int i = 0;
 	unsigned long int result = 0;
 
-	if (*s == '+')
-		s++;  /* TODO: why does this make main return 255? */
-	for (i = 0;  s[i] != '\0'; i++)
+	if (*str == '+')
+		str++;
+
+	for (i = 0;  str[i] != '\0'; i++)
 	{
-		if (s[i] >= '0' && s[i] <= '9')
+		if (str[i] >= '0' && str[i] <= '9')
 		{
 			result *= 10;
-			result += (s[i] - '0');
+			result += (str[i] - '0');
 			if (result > INT_MAX)
 				return (-1);
 		}
 		else
 			return (-1);
 	}
+
 	return (result);
 }
 
 /**
- * print_error - prints an error message
- * @info: the parameter & return info struct
- * @estr: string containing specified error type
- * Return: 0 if no numbers in string, converted number otherwise
- *        -1 on error
+ * printErrorMessage - prints an error message
+ * @info: information about the shell's state
+ * @error_str: string specified the error
+ *
+ * Return: Nothing
  */
-void printErrorMessage(info_t *info, char *estr)
+void printErrorMessage(info_t *info, char *error_str)
 {
 	printInputString(info->fname);
 	printInputString(": ");
@@ -43,11 +46,11 @@ void printErrorMessage(info_t *info, char *estr)
 	printInputString(": ");
 	printInputString(info->argv[0]);
 	printInputString(": ");
-	printInputString(estr);
+	printInputString(error_str);
 }
 
 /**
- * print_d - function prints a decimal (integer) number (base 10)
+ * printDecimalNumber - function prints a decimal number
  * @input: the input
  * @fd: the filedescriptor to write to
  *
@@ -86,9 +89,9 @@ int printDecimalNumber(int input, int fd)
 }
 
 /**
- * convert_number - converter function, a clone of itoa
+ * NumberToString - convert a number to string
  * @num: number
- * @base: base
+ * @base: base of the number
  * @flags: argument flags
  *
  * Return: string
@@ -122,19 +125,21 @@ char *NumberToString(long int num, int base, int flags)
 }
 
 /**
- * remove_comments - function replaces first instance of '#' with '\0'
- * @buf: address of the string to modify
+ * removeComments - function replaces first instance of '#' with '\0'
+ * @buffer: address of the string to modify
  *
  * Return: Always 0;
  */
-void removeComments(char *buf)
+void removeComments(char *buffer)
 {
 	int i;
 
-	for (i = 0; buf[i] != '\0'; i++)
-		if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
+	for (i = 0; buffer[i] != '\0'; i++)
+	{
+		if (buffer[i] == '#' && (!i || buffer[i - 1] == ' '))
 		{
-			buf[i] = '\0';
+			buffer[i] = '\0';
 			break;
 		}
+	}
 }
