@@ -1,9 +1,8 @@
 #include "wem_karl.h"
 
 /**
- * _myenv - prints the current environment
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
+ * EnvCommand - prints the current environment
+ * @info: information about the shell's state
  * Return: Always 0
  */
 int EnvCommand(info_t *info)
@@ -13,9 +12,9 @@ int EnvCommand(info_t *info)
 }
 
 /**
- * _getenv - gets the value of an environ variable
- * @info: Structure containing potential arguments. Used to maintain
- * @name: env var name
+ * getEnvironVariable - gets the value of an environ variable
+ * @info: information about the shell's state
+ * @name: name of the environment variable
  *
  * Return: the value
  */
@@ -35,11 +34,10 @@ char *getEnvironVariable(info_t *info, const char *name)
 }
 
 /**
- * _mysetenv - Initialize a new environment variable,
- *             or modify an existing one
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
- *  Return: Always 0
+ * SetEnvCommand - Initialize a new environment variable
+ * @info: information about the shell's state
+ *
+ * Return: Always 0
  */
 int SetEnvCommand(info_t *info)
 {
@@ -50,13 +48,14 @@ int SetEnvCommand(info_t *info)
 	}
 	if (setEnvVariable(info, info->argv[1], info->argv[2]))
 		return (0);
+
 	return (1);
 }
 
 /**
- * _myunsetenv - Remove an environment variable
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
+ * UnsetEnvCommand - Remove an environment variable
+ * @info: information about the shell's state
+ *
  * Return: Always 0
  */
 int UnsetEnvCommand(info_t *info)
@@ -75,9 +74,9 @@ int UnsetEnvCommand(info_t *info)
 }
 
 /**
- * populate_env_list - populates env linked list
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
+ * populateEnvironmentList - populates env linked list
+ * @info: information about the shell's state
+ *
  * Return: Always 0
  */
 int populateEnvironmentList(info_t *info)
