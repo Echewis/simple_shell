@@ -1,8 +1,8 @@
 #include "wem_karl.h"
 
 /**
- * clear_info - initializes info_t struct
- * @info: struct address
+ * clearInfo - This will initializes info_t struct
+ * @info:This is the structure address
  */
 void clearInfo(info_t *info)
 {
@@ -13,13 +13,13 @@ void clearInfo(info_t *info)
 }
 
 /**
- * set_info - initializes info_t struct
- * @info: struct address
- * @av: argument vector
+ * setInfo - This will initializes info_t structure
+ * @info: This is the structure address
+ * @av: This is the argument vector
  */
 void setInfo(info_t *info, char **av)
 {
-	int i = 0;
+	int a = 0;
 
 	info->fname = av[0];
 	if (info->arg)
@@ -34,9 +34,9 @@ void setInfo(info_t *info, char **av)
 				info->argv[1] = NULL;
 			}
 		}
-		for (i = 0; info->argv && info->argv[i]; i++)
+		for (a = 0; info->argv && info->argv[a]; a++)
 			;
-		info->argc = i;
+		info->argc = a;
 
 		replaceAliases(info);
 		replaceVariables(info);
@@ -44,16 +44,16 @@ void setInfo(info_t *info, char **av)
 }
 
 /**
- * free_info - frees info_t struct fields
- * @info: struct address
- * @all: true if freeing all fields
+ * freeInfo - This will frees info_t structure fields
+ * @info: This is the structure address
+ * @a: It will be true if Its freeing all fields
  */
-void freeInfo(info_t *info, int all)
+void freeInfo(info_t *info, int a)
 {
 	freeStringArray(info->argv);
 	info->argv = NULL;
 	info->path = NULL;
-	if (all)
+	if (a)
 	{
 		if (!info->cmd_buf)
 			free(info->arg);

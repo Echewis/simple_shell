@@ -1,34 +1,33 @@
 #include "wem_karl.h"
 
 /**
- * get_history_file - gets the history file
- * @info: parameter struct
- *
+ * *getHistoryFileName - This will get the history file
+ * @info:  This is the parameter structure
  * Return: allocated string containg history file
  */
 
 char *getHistoryFileName(info_t *info)
 {
-	char *buf, *dir;
+	char *b, *d;
 
-	dir = getEnvironVariable(info, "HOME=");
-	if (!dir)
+	d = getEnvironVariable(info, "HOME=");
+	if (!d)
 		return (NULL);
-	buf = malloc(sizeof(char) * (getStrLen(dir) + getStrLen(HIST_FILE) + 2));
-	if (!buf)
+	b = malloc(sizeof(char) * (getStrLen(d) + getStrLen(HIST_FILE) + 2));
+	if (!b)
 		return (NULL);
-	buf[0] = 0;
-	copyStr(buf, dir);
-	concatStr(buf, "/");
-	concatStr(buf, HIST_FILE);
-	return (buf);
+	b[0] = 0;
+	copyStr(b, d);
+	concatStr(b, "/");
+	concatStr(b, HIST_FILE);
+	return (b);
 }
 
 /**
- * write_history - creates a file, or appends to an existing file
- * @info: the parameter struct
- *
- * Return: 1 on success, else -1
+ * writeHistoryToFile - This will creates a file or append it
+ * to the existing file
+ * @info: This is the parameter structure
+ * Return:It will return 1 on success, else -1
  */
 int writeHistoryToFile(info_t *info)
 {
@@ -54,17 +53,16 @@ int writeHistoryToFile(info_t *info)
 }
 
 /**
- * read_history - reads history from file
- * @info: the parameter struct
- *
- * Return: histcount on success, 0 otherwise
+ * readHistoryFromFile - This will read the history from file
+ * @info: this is the parameter structure
+ * Return: It will rwturn histcount on success or 0
  */
 int readHistoryFromFile(info_t *info)
 {
-	int i, last = 0, linecount = 0;
+	int a, l = 0, linecount = 0;
 	ssize_t fd, rdlen, fsize = 0;
 	struct stat st;
-	char *buf = NULL, *filename = getHistoryFileName(info);
+	char *b = NULL, *filename = getHistoryFileName(info);
 
 	if (!filename)
 		return (0);
@@ -77,24 +75,24 @@ int readHistoryFromFile(info_t *info)
 		fsize = st.st_size;
 	if (fsize < 2)
 		return (0);
-	buf = malloc(sizeof(char) * (fsize + 1));
-	if (!buf)
+	b = malloc(sizeof(char) * (fsize + 1));
+	if (!b)
 		return (0);
-	rdlen = read(fd, buf, fsize);
-	buf[fsize] = 0;
+	rdlen = read(fd, b, fsize);
+	b[fsize] = 0;
 	if (rdlen <= 0)
-		return (free(buf), 0);
+		return (free(b), 0);
 	close(fd);
-	for (i = 0; i < fsize; i++)
-		if (buf[i] == '\n')
+	for (a = 0; a < fsize; a++)
+		if (b[a] == '\n')
 		{
-			buf[i] = 0;
-			buildHistoryList(info, buf + last, linecount++);
-			last = i + 1;
+			b[a] = 0;
+			buildHistoryList(info, b + l, linecount++);
+			l = a + 1;
 		}
-	if (last != i)
-		buildHistoryList(info, buf + last, linecount++);
-	free(buf);
+	if (l != a)
+		buildHistoryList(info, b + l, linecount++);
+	free(b);
 	info->histcount = linecount;
 	while (info->histcount-- >= HIST_MAX)
 		deleteNodeAtIndex(&(info->history), 0);
@@ -103,41 +101,39 @@ int readHistoryFromFile(info_t *info)
 }
 
 /**
- * build_history_list - adds entry to a history linked list
+ * buildHistoryList - This will add entry to a history linked list
  * @info: Structure containing potential arguments. Used to maintain
- * @buf: buffer
- * @linecount: the history linecount, histcount
+ * @b: Is the buffer
+ * @l: This is the line count
  *
  * Return: Always 0
  */
-int buildHistoryList(info_t *info, char *buf, int linecount)
+int buildHistoryList(info_t *info, char *b, int l)
 {
 	list_t *node = NULL;
 
 	if (info->history)
 		node = info->history;
-	insertNodeAtEnd(&node, buf, linecount);
-
+	insertNodeAtEnd(&node, b, l);
 	if (!info->history)
 		info->history = node;
 	return (0);
 }
 
 /**
- * renumber_history - renumbers the history linked list after changes
- * @info: Structure containing potential arguments. Used to maintain
- *
+ * renumberHistory - This will re-numbers the history linked list
+ * @info: This is the Structure containing potential arguments
  * Return: the new histcount
  */
 int renumberHistory(info_t *info)
 {
 	list_t *node = info->history;
-	int i = 0;
+	int a = 0;
 
 	while (node)
 	{
-		node->num = i++;
+		node->num = a++;
 		node = node->next;
 	}
-	return (info->histcount = i);
+	return (info->histcount = a);
 }
