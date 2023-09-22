@@ -1,11 +1,10 @@
 #include "wem_karl.h"
 
 /**
- * _myhistory - displays the history list, one command by line, preceded
- *              with line numbers, starting at 0.
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
- *  Return: Always 0
+ * history - displays the history list, one by one
+ * @info: information about the shell's state
+ *
+ * Return: Always 0
  */
 int history(info_t *info)
 {
@@ -14,11 +13,11 @@ int history(info_t *info)
 }
 
 /**
- * unset_alias - sets alias to string
- * @info: parameter struct
+ * unset_alias - unsets alias to string
+ * @info: information about the shell's state
  * @str: the string alias
  *
- * Return: Always 0 on success, 1 on error
+ * Return: Always 0 on success, 1 for fail
  */
 int unset_alias(info_t *info, char *str)
 {
@@ -38,7 +37,7 @@ int unset_alias(info_t *info, char *str)
 
 /**
  * set_alias - sets alias to string
- * @info: parameter struct
+ * @info: information about the shell's state
  * @str: the string alias
  *
  * Return: Always 0 on success, 1 on error
@@ -81,10 +80,10 @@ int print_alias(list_t *node)
 }
 
 /**
- * _myalias - mimics the alias builtin (man alias)
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- *  Return: Always 0
+ * alias - the alias builtin (man alias)
+ * @info: information about the shell's state
+ *
+ * Return: Always 0
  */
 int alias(info_t *info)
 {
