@@ -1,6 +1,6 @@
 #include "wem_karl.h"
 /**
- * _memset - fills memory with a constant byte
+ * fillMemory - fills memory with a constant byte
  * @s: the pointer to the memory area
  * @b: the byte to fill *s with
  * @n: the amount of bytes to be filled
@@ -16,7 +16,7 @@ char *fillMemory(char *s, char b, unsigned int n)
 }
 
 /**
- * ffree - frees a string of strings
+ * freeStringArray - frees a string of strings
  * @pp: string of strings
  */
 void freeStringArray(char **pp)
@@ -31,7 +31,7 @@ void freeStringArray(char **pp)
 }
 
 /**
- * _realloc - reallocates a block of memory
+ * reallocMemory - reallocates a block of memory
  * @ptr: pointer to previous malloc'ated block
  * @old_size: byte size of previous block
  * @new_size: byte size of new block
