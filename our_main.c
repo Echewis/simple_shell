@@ -1,7 +1,7 @@
 #include "wem_karl.h"
 
 /**
- * main - entry point
+ * main - is the function runs when we compile
  * @ac: arg count
  * @av: arg vector
  *
