@@ -165,6 +165,6 @@ int getLine(info_t *info, char **ptr, size_t *length)
 void handleSIGINT(__attribute__((unused))int sig_num)
 {
 	putStr("\n");
-	putStr("$ ");
+	putStr("wem_karl_$ ");
 	putChar(BUF_FLUSH);
 }
