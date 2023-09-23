@@ -16,7 +16,7 @@ int runShell(info_t *info, char **av)
 	{
 		clearInfo(info);
 		if (isInteractive(info))
-			putStr("$ ");
+			putStr("wem_karl_$ ");
 		printChar(BUF_FLUSH);
 		bytes_read = readInput(info);
 		if (bytes_read != -1)
